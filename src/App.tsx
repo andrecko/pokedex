@@ -8,13 +8,22 @@ function App() {
 
   useEffect(() => {
     axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response => {
-      setPokemons(response.data);
-      console.log(response.data.results)
+      response.data.results.forEach((pokemonLista: any) => {
+        axios.get(pokemonLista.url).then((pokemon: any) => {
+          setPokemons(pokemon.data);
+        })
+      });
     })
   }, [])
 
   return (
-    <div>Hello world!</div>
+    <ul>
+      {pokemons.map((pokemon: Pokemon) => (
+        <li key={pokemon.id}>
+          <li href={pokemon.id}>{pokemon.name}</a>
+        </li>
+      ))}
+    </ul>
   )
 
 }
