@@ -10,7 +10,7 @@ function App() {
     axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response => {
       response.data.results.forEach((pokemonLista: any) => {
         axios.get(pokemonLista.url).then((pokemon: any) => {
-          setPokemons(pokemon.data);
+          console.log({name: pokemon.data.name, type: [pokemon.data.types[0].type.name, pokemon.data.types[1]?.type.name]});
         })
       });
     })
@@ -18,11 +18,7 @@ function App() {
 
   return (
     <ul>
-      {pokemons.map((pokemon: Pokemon) => (
-        <li key={pokemon.id}>
-          <li href={pokemon.id}>{pokemon.name}</a>
-        </li>
-      ))}
+      
     </ul>
   )
 
