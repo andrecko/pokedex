@@ -8,7 +8,7 @@ import { Grid } from "@mui/material";
 
 export const Home = () => {
 
-    const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   // useEffect(() => {
   //   axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response => {
@@ -31,27 +31,19 @@ export const Home = () => {
     for (var i = 1; i < 21; i++) {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}`)
     }
-    var response = axios.all(endpoints.map(async (endpoint) => (await axios.get(endpoint)).data)).then((res: Pokemon[]) => setPokemons(res));
+    axios.all(endpoints.map(async (endpoint) => (await axios.get(endpoint)).data)).then((res: Pokemon[]) => setPokemons(res));
   }
 
-  // console.log(pokemons);
   return (
     <div>
       <Navbar />
-      <Container maxWidth='xl'>
-        <Grid container>
-            <Grid item xs={3}>
-                <PokemonCard />
+      <Container maxWidth='xl' >
+        <Grid container spacing={2}>
+          {pokemons.map((pokemon, key) => (
+            <Grid item xs={3} key={key}>
+                <PokemonCard name={pokemon.name}/>
             </Grid>
-            <Grid item xs={3}>
-                <PokemonCard />
-            </Grid>
-            <Grid item xs={3}>
-                <PokemonCard />
-            </Grid>
-            <Grid item xs={3}>
-                <PokemonCard />
-            </Grid>
+          ))}
         </Grid>
       </Container>
     </div>
