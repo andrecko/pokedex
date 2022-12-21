@@ -20,8 +20,6 @@ export const Home = () => {
   //   })
   // }, [])
 
-  // console.log(pokemons);
-
   useEffect(() => {
     getPokemons();
   }, []);
@@ -34,6 +32,8 @@ export const Home = () => {
     axios.all(endpoints.map(async (endpoint) => (await axios.get(endpoint)).data)).then((res: Pokemon[]) => setPokemons(res));
   }
 
+  console.log(pokemons);
+
   return (
     <div>
       <Navbar />
@@ -41,7 +41,7 @@ export const Home = () => {
         <Grid container spacing={2}>
           {pokemons.map((pokemon, key) => (
             <Grid item xs={3} key={key}>
-                <PokemonCard name={pokemon.name}/>
+                <PokemonCard name={pokemon.name} image={pokemon.sprites.front_default}/>
             </Grid>
           ))}
         </Grid>
