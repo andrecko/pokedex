@@ -10,13 +10,13 @@ interface Props {
   image: string;
 }
 
-export default function PokemonCard({name}: Props, {image}: Props ) {
+export default function PokemonCard({name, image}: Props ) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="140"
+          height="200"
           image={image}
           alt="green iguana"
         />

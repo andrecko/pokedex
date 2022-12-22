@@ -10,16 +10,6 @@ export const Home = () => {
 
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
-  // useEffect(() => {
-  //   axios.get(`https://pokeapi.co/api/v2/pokemon`).then(response => {
-  //     response.data.results.forEach((pokemonLista: any) => {
-  //       axios.get(pokemonLista.url).then((pokemon: any) => {
-  //         setPokemons(pokemon.data);
-  //       })
-  //     });
-  //   })
-  // }, [])
-
   useEffect(() => {
     getPokemons();
   }, []);
@@ -29,19 +19,32 @@ export const Home = () => {
     for (var i = 1; i < 21; i++) {
       endpoints.push(`https://pokeapi.co/api/v2/pokemon/${i}`)
     }
-    axios.all(endpoints.map(async (endpoint) => (await axios.get(endpoint)).data)).then((res: Pokemon[]) => setPokemons(res));
+    axios.all(endpoints.map(async (endpoint) => (await axios.get(endpoint)).data))
+      .then((res: Pokemon[]) => setPokemons(res));
   }
 
-  console.log(pokemons);
+  const pokemonFilter = (name: string) => {
+    var filteredPokemons: Pokemon[] = []
+
+    if(name === '')
+      getPokemons()
+      
+    pokemons.forEach(pokemon => {
+      if(pokemon.name.includes(name)) 
+        filteredPokemons.push(pokemon);
+    });
+
+    setPokemons(filteredPokemons);
+  }
 
   return (
     <div>
-      <Navbar />
+      <Navbar pokemonFilter={pokemonFilter}/>
       <Container maxWidth='xl' >
         <Grid container spacing={2}>
           {pokemons.map((pokemon, key) => (
-            <Grid item xs={3} key={key}>
-                <PokemonCard name={pokemon.name} image={pokemon.sprites.front_default}/>
+            <Grid item xs={2} key={key}>
+              <PokemonCard name={pokemon.name} image={pokemon.sprites.front_default} />
             </Grid>
           ))}
         </Grid>
