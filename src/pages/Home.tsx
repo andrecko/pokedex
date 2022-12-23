@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import PokemonCard from "../components/PokemonCard";
 import { Container } from "@mui/system";
 import { Grid } from "@mui/material";
+import { Skeletons } from "../components/Skeletons";
 
 export const Home = () => {
 
@@ -26,11 +27,11 @@ export const Home = () => {
   const pokemonFilter = (name: string) => {
     var filteredPokemons: Pokemon[] = []
 
-    if(name === '')
+    if (name === '')
       getPokemons()
-      
+
     pokemons.forEach(pokemon => {
-      if(pokemon.name.includes(name)) 
+      if (pokemon.name.includes(name))
         filteredPokemons.push(pokemon);
     });
 
@@ -39,14 +40,16 @@ export const Home = () => {
 
   return (
     <div>
-      <Navbar pokemonFilter={pokemonFilter}/>
+      <Navbar term={pokemonFilter} />
       <Container maxWidth='xl' >
         <Grid container spacing={2}>
-          {pokemons.map((pokemon, key) => (
-            <Grid item xs={2} key={key}>
-              <PokemonCard name={pokemon.name} image={pokemon.sprites.front_default} />
-            </Grid>
-          ))}
+          {pokemons.length === 0 ? (<Skeletons />) :
+            (pokemons.map((pokemon, key) => (
+              <Grid item xs={12} sm={6} md={4} lg={2} key={key}>
+                <PokemonCard name={pokemon.name} image={pokemon.sprites.front_default} types={pokemon.types} />
+              </Grid>
+            )))
+          }
         </Grid>
       </Container>
     </div>
