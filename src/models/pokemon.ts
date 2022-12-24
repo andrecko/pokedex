@@ -1,3 +1,4 @@
+import { Characteristics } from "./characteristics";
 import { Types } from "./types";
 
 interface PokemonSprites {
@@ -15,5 +16,6 @@ export interface Pokemon {
     id: number;
     name: string;
     sprites: PokemonSprites;
+    characteristics: Characteristics;
     types: Types[];
 }
