@@ -44,7 +44,7 @@ export default function PokemonCard({ pokemon }: Props) {
         </CardContent>
         <CardMedia
           component="img"
-          width="200"
+          // image={pokemon.sprites.versions['generation-v']['black-white'].animated.front_default}
           image={pokemon.sprites.front_default}
           alt="green iguana"
         />

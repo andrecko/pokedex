@@ -24,14 +24,16 @@ export const Home = () => {
       .then((res: Pokemon[]) => setPokemons(res));
   }
 
-  const pokemonFilter = (name: string) => {
+  const pokemonFilter = (word: string) => {
     var filteredPokemons: Pokemon[] = []
 
-    if (name === '')
+    if (word === '')
       getPokemons()
 
     pokemons.forEach(pokemon => {
-      if (pokemon.name.includes(name.toLowerCase()))
+      if (pokemon.name.includes(word.toLowerCase()) || 
+          pokemon.types[0].type.name.includes(word.toLowerCase()) ||
+          pokemon.types[1]?.type.name.includes(word.toLowerCase()))
         filteredPokemons.push(pokemon);
     });
 
