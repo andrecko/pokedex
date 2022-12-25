@@ -5,21 +5,20 @@ import Typography from '@mui/material/Typography';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 import { Types } from '../../models/types';
 import { PokemonSprites } from '../../models/pokemon-sprites';
+import { PokemonStats } from '../../models/pokemon-stats';
+import { Pokemon } from '../../models/pokemon';
 
 interface Props {
-  id: number;
-  name: string;
-  image: PokemonSprites;
-  types: Types[];
+  pokemon: Pokemon;
 }
 
-export default function PokemonCard({ id, name, image, types }: Props) {
+export default function PokemonCard({ pokemon }: Props) {
 
   const typeHandler = () => {
-    const primaryType = types[0].type.name;
+    const primaryType = pokemon.types[0].type.name;
 
-    if (types[1]) {
-      const secondaryType = types[1].type.name;
+    if (pokemon.types[1]) {
+      const secondaryType = pokemon.types[1].type.name;
 
       return primaryType.replace(primaryType[0], primaryType[0].toUpperCase()) + ' | ' + 
       secondaryType.replace(secondaryType[0], secondaryType[0].toUpperCase());
@@ -28,13 +27,15 @@ export default function PokemonCard({ id, name, image, types }: Props) {
     return primaryType.replace(primaryType[0], primaryType[0].toUpperCase());
   }
 
+  // console.log(stats)
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardContent>
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography gutterBottom variant="caption" textAlign="left" component="div" >
-              {'#' + id}
+              {'#' + pokemon.id}
             </Typography>
             <Typography gutterBottom variant="caption" textAlign="right" component="div" >
               {typeHandler()}
@@ -44,19 +45,15 @@ export default function PokemonCard({ id, name, image, types }: Props) {
         <CardMedia
           component="img"
           width="200"
-          image={image.front_default}
+          image={pokemon.sprites.front_default}
           alt="green iguana"
         />
         <CardContent>
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography gutterBottom variant="h5" component="div">
-              {name.replace(name[0], name[0].toUpperCase())}
+              {pokemon.name.replace(pokemon.name[0], pokemon.name[0].toUpperCase())}
             </Typography>
           </Box>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
         </CardContent>
       </CardActionArea>
       {/* <CardActions>
