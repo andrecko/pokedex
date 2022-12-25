@@ -46,7 +46,7 @@ export const Home = () => {
           {pokemons.length === 0 ? (<Skeletons />) :
             (pokemons.map((pokemon, key) => (
               <Grid item xs={12} sm={6} md={4} lg={2} key={key}>
-                <PokemonCard id={pokemon.id} name={pokemon.name} image={pokemon.sprites.front_default} types={pokemon.types} />
+                <PokemonCard id={pokemon.id} name={pokemon.name} image={pokemon.sprites} types={pokemon.types} />
               </Grid>
             )))
           }

@@ -3,13 +3,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import Switch from '@mui/material/Switch';
 import { Box, Button, CardActionArea, CardActions } from '@mui/material';
 import { Types } from '../../models/types';
+import { Sprites } from '../../models/pokemon-sprites';
 
 interface Props {
   id: number;
   name: string;
-  image: string;
+  image: Sprites;
   types: Types[];
 }
 
@@ -17,8 +19,14 @@ export default function PokemonCard({ id, name, image, types }: Props) {
 
   const typeHandler = () => {
     if (types[1])
-      return types[0].type.name + ' | ' + types[1].type.name;
-    return types[0].type.name;
+      return types[0].type.name.replace(
+        types[0].type.name[0],types[0].type.name[0].toUpperCase()
+        ) + ' | ' + 
+        types[1].type.name.replace(
+          types[1].type.name[0],types[1].type.name[0].toUpperCase()
+        );
+
+    return types[0].type.name.replace(types[0].type.name[0],types[0].type.name[0].toUpperCase());
   }
 
   return (
@@ -37,7 +45,7 @@ export default function PokemonCard({ id, name, image, types }: Props) {
         <CardMedia
           component="img"
           width="200"
-          image={image}
+          image={image.front_default}
           alt="green iguana"
         />
         <CardContent>
