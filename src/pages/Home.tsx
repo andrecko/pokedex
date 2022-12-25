@@ -31,7 +31,7 @@ export const Home = () => {
       getPokemons()
 
     pokemons.forEach(pokemon => {
-      if (pokemon.name.includes(name))
+      if (pokemon.name.includes(name.toLowerCase()))
         filteredPokemons.push(pokemon);
     });
 

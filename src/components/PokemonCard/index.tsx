@@ -43,7 +43,7 @@ export default function PokemonCard({ id, name, image, types }: Props) {
         <CardContent>
           <Box display="flex" justifyContent="space-between" alignItems="center">
             <Typography gutterBottom variant="h5" component="div">
-              {name}
+              {name.replace(name[0],name[0].toUpperCase())}
             </Typography>
           </Box>
           {/* <Typography variant="body2" color="text.secondary">
