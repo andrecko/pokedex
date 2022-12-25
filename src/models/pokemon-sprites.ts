@@ -1,4 +1,4 @@
-export interface Sprites {
+export interface PokemonSprites {
     id: number;
     front_default: string;
     front_shiny: string;

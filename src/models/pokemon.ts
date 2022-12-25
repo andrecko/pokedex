@@ -1,9 +1,9 @@
-import { Sprites } from "./pokemon-sprites";
+import { PokemonSprites } from "./pokemon-sprites";
 import { Types } from "./types";
 
 export interface Pokemon {
     id: number;
     name: string;
-    sprites: Sprites;
+    sprites: PokemonSprites;
     types: Types[];
 }
