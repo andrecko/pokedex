@@ -2,15 +2,17 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import SecurityIcon from '@mui/icons-material/Security';
 import BoltIcon from '@mui/icons-material/Bolt';
+import HeightIcon from '@mui/icons-material/Height';
+import CookieIcon from '@mui/icons-material/Cookie';
 import { Box, Button, CardActionArea, CardActions, Modal } from '@mui/material';
 import { Pokemon } from '../../models/pokemon';
 import React from 'react';
 import Favorite from '@mui/icons-material/Favorite';
 import FitnessCenter from '@mui/icons-material/FitnessCenter';
+import Height from '@mui/icons-material/Height';
+import Cookie from '@mui/icons-material/Cookie';
 
 interface Props {
   pokemon: Pokemon;
@@ -48,7 +50,7 @@ export default function PokemonCard({ pokemon }: Props) {
     return primaryType.replace(primaryType[0], primaryType[0].toUpperCase());
   }
 
-  // console.log(stats)
+  // console.log(pokemon.stats)
 
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -110,11 +112,11 @@ export default function PokemonCard({ pokemon }: Props) {
             </Typography>
 
             <Typography variant="body1" textAlign='center'>
-              Height: {pokemon.height} lbs
+              <Height /> Height: {pokemon.height} lbs
             </Typography>
 
             <Typography variant="body1" textAlign='center'>
-              Weight: {pokemon.weight} lbs
+              <Cookie /> Weight: {pokemon.weight} lbs
             </Typography>
           </Typography>
         </Box>
