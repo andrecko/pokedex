@@ -108,6 +108,14 @@ export default function PokemonCard({ pokemon }: Props) {
             <Typography variant="body1" textAlign='center'>
               <BoltIcon color='warning' /> Speed: {pokemon.stats[5].base_stat}
             </Typography>
+
+            <Typography variant="body1" textAlign='center'>
+              Height: {pokemon.height} lbs
+            </Typography>
+
+            <Typography variant="body1" textAlign='center'>
+              Weight: {pokemon.weight} lbs
+            </Typography>
           </Typography>
         </Box>
       </Modal>
